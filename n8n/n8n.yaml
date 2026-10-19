@@ -12,6 +12,10 @@ spec:
       labels:
         app: n8n
     spec:
+      volumes:
+        - name: n8n-data
+          persistentVolumeClaim:
+            claimName: n8n-data
       containers:
         - name: n8n
           image: docker.n8n.io/n8nio/n8n:latest
