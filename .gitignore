@@ -8,6 +8,7 @@ secrets/*
 # Local development artifacts
 *.log
 .DS_Store
+intent.md
 
 # Database backups and local artifacts
 backups/
