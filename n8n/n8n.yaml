@@ -12,13 +12,14 @@ spec:
       labels:
         app: n8n
     spec:
+      enableServiceLinks: false
       volumes:
         - name: n8n-data
           persistentVolumeClaim:
             claimName: n8n-data
       containers:
         - name: n8n
-          image: docker.n8n.io/n8nio/n8n:latest
+          image: docker.n8n.io/n8nio/n8n@sha256:bcb4e4917141f4a5249c8eadf2776d347f4c2ede75adfbbc82064826af9a8ead
           ports:
             - name: http
               containerPort: 5678
@@ -66,6 +67,8 @@ spec:
                 secretKeyRef:
                   name: redis-credentials
                   key: REDIS_PASSWORD
+            - name: OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS
+              value: "true"
           resources:
             requests:
               cpu: 250m

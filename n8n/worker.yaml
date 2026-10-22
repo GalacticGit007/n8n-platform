@@ -12,9 +12,10 @@ spec:
       labels:
         app: n8n-worker
     spec:
+      enableServiceLinks: false
       containers:
         - name: worker
-          image: docker.n8n.io/n8nio/n8n:latest
+          image: docker.n8n.io/n8nio/n8n@sha256:bcb4e4917141f4a5249c8eadf2776d347f4c2ede75adfbbc82064826af9a8ead
           command: ["n8n", "worker"]
           env:
             - name: EXECUTIONS_MODE
