@@ -23,6 +23,14 @@ spec:
           ports:
             - name: http
               containerPort: 5678
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
           env:
             - name: DB_TYPE
               value: postgresdb

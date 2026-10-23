@@ -9,6 +9,8 @@ secrets/*
 *.log
 .DS_Store
 intent.md
+intent*.md
+In-Flight-Job-Recovery.md
 
 # Database backups and local artifacts
 backups/

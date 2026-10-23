@@ -45,6 +45,14 @@ spec:
           ports:
             - name: postgres
               containerPort: 5432
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 70
+            runAsGroup: 70
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
           envFrom:
             - secretRef:
                 name: n8n-db-credentials

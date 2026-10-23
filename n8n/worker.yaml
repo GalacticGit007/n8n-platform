@@ -17,6 +17,14 @@ spec:
         - name: worker
           image: docker.n8n.io/n8nio/n8n@sha256:bcb4e4917141f4a5249c8eadf2776d347f4c2ede75adfbbc82064826af9a8ead
           command: ["n8n", "worker"]
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
           env:
             - name: EXECUTIONS_MODE
               value: queue

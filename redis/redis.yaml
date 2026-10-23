@@ -34,6 +34,14 @@ spec:
           ports:
             - name: redis
               containerPort: 6379
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 999
+            runAsGroup: 1000
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
           env:
             - name: REDIS_PASSWORD
               valueFrom:
