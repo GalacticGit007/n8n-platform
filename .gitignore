@@ -41,3 +41,5 @@ backups/
 # Local logs and temporary files
 *.log
 *.tmp
+
+scripts/*.pre-manifest-fix
