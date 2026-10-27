@@ -12,6 +12,8 @@ spec:
     metadata:
       labels:
         app: n8n
+      annotations:
+        gitops-test: "enabled"
     spec:
       enableServiceLinks: false
       securityContext:
