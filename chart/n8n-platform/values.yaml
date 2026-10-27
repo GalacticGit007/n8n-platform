@@ -45,6 +45,7 @@ redis:
   image: redis:7-alpine
   port: 6379
   storage:
+    createClaim: false
     size: 1Gi
     storageClassName: standard
   resources:
@@ -56,6 +57,7 @@ redis:
       memory: 512Mi
 
 n8nData:
+  createClaim: false
   existingClaim: n8n-data
   size: 2Gi
   storageClassName: standard

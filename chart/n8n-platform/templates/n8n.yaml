@@ -115,3 +115,17 @@ spec:
     - name: http
       port: {{ .Values.n8n.port }}
       targetPort: 5678
+{{- if .Values.n8nData.createClaim }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.n8nData.existingClaim }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: {{ .Values.n8nData.storageClassName | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.n8nData.size }}
+{{- end }}

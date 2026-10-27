@@ -1,0 +1,47 @@
+# Shared application configuration
+n8n:
+  replicaCount: 1
+  image: "docker.n8n.io/n8nio/n8n@sha256:bcb4e4917141f4a5249c8eadf2776d347f4c2ede75adfbbc82064826af9a8ead"
+  port: 5678
+  protocol: http
+  secureCookie: false
+
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: "1"
+      memory: 1Gi
+
+worker:
+  replicaCount: 1
+
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: "1"
+      memory: 1Gi
+
+# EKS-specific configuration
+postgres:
+  storage:
+    storageClassName: gp3
+
+redis:
+  storage:
+    createClaim: true
+    storageClassName: gp3
+
+n8nData:
+  createClaim: true
+  existingClaim: n8n-data
+  size: 2Gi
+  storageClassName: gp3
+
+secrets:
+  database: n8n-db-credentials
+  encryptionKey: n8n-encryption-key
+  redis: redis-credentials

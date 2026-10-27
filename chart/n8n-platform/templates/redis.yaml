@@ -81,3 +81,17 @@ spec:
     - name: redis
       port: {{ .Values.redis.port }}
       targetPort: 6379
+{{- if .Values.redis.storage.createClaim }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: {{ .Values.redis.storage.storageClassName | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.redis.storage.size }}
+{{- end }}
