@@ -1,0 +1,5 @@
+apiVersion: v2
+name: n8n-platform
+description: Self-hosted n8n platform with PostgreSQL and Redis
+type: application
+version: 0.1.0

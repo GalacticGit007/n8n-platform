@@ -1,0 +1,37 @@
+{
+  "Rules": [
+    {
+      "ID": "Expire-current-n8n-backups-after-14-days",
+      "Status": "Enabled",
+      "Filter": {
+        "Prefix": "backups/"
+      },
+      "Expiration": {
+        "Days": 14
+      }
+    },
+    {
+      "ID": "Expire-noncurrent-n8n-backup-versions-after-14-days",
+      "Status": "Enabled",
+      "Filter": {
+        "Prefix": "backups/"
+      },
+      "NoncurrentVersionExpiration": {
+        "NoncurrentDays": 14
+      },
+      "Expiration": {
+        "ExpiredObjectDeleteMarker": true
+      }
+    },
+    {
+      "ID": "Abort-incomplete-n8n-backup-uploads",
+      "Status": "Enabled",
+      "Filter": {
+        "Prefix": "backups/"
+      },
+      "AbortIncompleteMultipartUpload": {
+        "DaysAfterInitiation": 7
+      }
+    }
+  ]
+}

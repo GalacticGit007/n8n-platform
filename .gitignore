@@ -17,3 +17,27 @@ backups/
 *.tar.gz
 *.dump
 *.log
+
+# Python environments and cache
+.venv/
+.venv-backup/
+__pycache__/
+*.py[cod]
+
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+secrets/
+.aws/
+.kube/
+
+# Backup data and generated snapshots
+backups/
+*.encrypted
+*.dump
+*.sql
+
+# Local logs and temporary files
+*.log
+*.tmp

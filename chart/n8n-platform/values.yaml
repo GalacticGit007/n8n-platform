@@ -1,0 +1,66 @@
+# Shared application configuration
+n8n:
+  replicaCount: 1
+  image: "docker.n8n.io/n8nio/n8n@sha256:bcb4e4917141f4a5249c8eadf2776d347f4c2ede75adfbbc82064826af9a8ead"
+  port: 5678
+  protocol: http
+  secureCookie: false
+
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: "1"
+      memory: 1Gi
+
+worker:
+  replicaCount: 1
+
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: "1"
+      memory: 1Gi
+
+postgres:
+  replicaCount: 1
+  image: postgres:17-alpine
+  port: 5432
+  storage:
+    size: 5Gi
+    storageClassName: standard
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+    limits:
+      cpu: "1"
+      memory: 1Gi
+
+redis:
+  replicaCount: 1
+  image: redis:7-alpine
+  port: 6379
+  storage:
+    size: 1Gi
+    storageClassName: standard
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+n8nData:
+  existingClaim: n8n-data
+  size: 2Gi
+  storageClassName: standard
+
+secrets:
+  database: n8n-db-credentials
+  encryptionKey: n8n-encryption-key
+  redis: redis-credentials
