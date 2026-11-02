@@ -54,7 +54,7 @@ redis:
   image: redis:7-alpine
   port: 6379
   storage:
-    createClaim: false
+    createClaim: true
     size: 1Gi
     storageClassName: standard
   resources:
