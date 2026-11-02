@@ -25,7 +25,16 @@ worker:
       cpu: "1"
       memory: 1Gi
 
+database:
+  host: n8n-db-cluster-rw
+  port: 5432
+  name: n8n
+  credentialsSecret: n8n-cnpg-credentials
+  usernameKey: username
+  passwordKey: password
+
 postgres:
+  enabled: false
   replicaCount: 1
   image: postgres:17-alpine
   port: 5432
@@ -45,7 +54,7 @@ redis:
   image: redis:7-alpine
   port: 6379
   storage:
-    createClaim: true
+    createClaim: false
     size: 1Gi
     storageClassName: standard
   resources:

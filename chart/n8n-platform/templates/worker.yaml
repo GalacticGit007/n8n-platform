@@ -29,24 +29,21 @@ spec:
             - name: DB_TYPE
               value: postgresdb
             - name: DB_POSTGRESDB_HOST
-              value: postgres
+              value: {{ .Values.database.host | quote }}
             - name: DB_POSTGRESDB_PORT
-              value: {{ .Values.postgres.port | quote }}
+              value: {{ .Values.database.port | quote }}
             - name: DB_POSTGRESDB_DATABASE
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.secrets.database }}
-                  key: POSTGRES_DB
+              value: {{ .Values.database.name | quote }}
             - name: DB_POSTGRESDB_USER
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.secrets.database }}
-                  key: POSTGRES_USER
+                  name: {{ .Values.database.credentialsSecret }}
+                  key: {{ .Values.database.usernameKey }}
             - name: DB_POSTGRESDB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.secrets.database }}
-                  key: POSTGRES_PASSWORD
+                  name: {{ .Values.database.credentialsSecret }}
+                  key: {{ .Values.database.passwordKey }}
             - name: N8N_ENCRYPTION_KEY
               valueFrom:
                 secretKeyRef:
