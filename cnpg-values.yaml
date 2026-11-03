@@ -1,0 +1,36 @@
+type: postgresql
+mode: standalone
+
+version:
+  postgresql: "17"
+
+cluster:
+  instances: 2
+  imageName: ""
+  imagePullPolicy: IfNotPresent
+
+  storage:
+    size: 5Gi
+    storageClass: standard
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+  affinity:
+    topologyKey: kubernetes.io/hostname
+    enablePodAntiAffinity: true
+    podAntiAffinityType: required
+
+  enableSuperuserAccess: false
+  enablePDB: true
+
+  initdb:
+    database: n8n
+    owner: n8n
+    secret:
+      name: n8n-cnpg-credentials
